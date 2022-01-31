@@ -28,7 +28,8 @@ class userController {
 
             const user = new User({username, password: hashPassword, role: 'user', favorites: [], basket: [], id: Date.now() })
             await user.save()
-            return response.status(200).json({title: "Success registration", message: `User: ${username} successfully registered`, user})
+            const token = generateAccessToken(user.id)
+            return response.status(200).json({ user, token })
         } catch (error) {
             response.status(500).json({message: 'server error', error})
         }
