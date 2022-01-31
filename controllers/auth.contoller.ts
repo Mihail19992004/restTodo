@@ -51,7 +51,7 @@ class userController {
             }
             const token = generateAccessToken(user.id)
             return response.status(200)
-                .json({title: 'Success authorization', message: {token}, id: user.id, role: user.role})
+                .json({token, user})
         } catch (e) {
             console.log(e)
             response.status(400).json({title: 'Login error', message: e})
