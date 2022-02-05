@@ -10,8 +10,8 @@ class TodoController {
             const elements = await Todo.find({userId})
             response.json(200).json({message: "success", elements})
 
-        } catch (e) {
-            response.status(500).json({message: "Server error. Try again later"})
+        } catch (error) {
+            response.status(500).json({message: "Server error. Try again later", error})
         }
     }
 
@@ -33,8 +33,8 @@ class TodoController {
 
             response.status(200).json({message: "Success creation todo", elements})
 
-        } catch (e) {
-            response.status(500).json({message: "Server error. Try again later"})
+        } catch (error) {
+            response.status(500).json({message: "Server error. Try again later", error})
         }
     }
 
@@ -55,8 +55,8 @@ class TodoController {
             const elements = await Todo.find({userId})
 
             response.status(200).json({message: 'success', elements})
-        } catch (e) {
-            response.status(500).json({message: "Server error. Try again later"})
+        } catch (error) {
+            response.status(500).json({message: "Server error. Try again later", error})
         }
     }
 
@@ -71,8 +71,8 @@ class TodoController {
 
             response.status(200).json({message: 'success', elements})
 
-        } catch (e) {
-            response.status(500).json({message: "Server error. Try again later"})
+        } catch (error) {
+            response.status(500).json({message: "Server error. Try again later", error})
         }
     }
 }
