@@ -3,6 +3,7 @@ import mongoose from 'mongoose'
 import cors from 'cors'
 import fileUpload from 'express-fileupload'
 import auth from './routes/auth.router'
+import todo from './routes/todo.router'
 
 const PORT = process.env.PORT || 5000
 const app: Express = express()
@@ -12,6 +13,7 @@ app.use(express.json())
 app.use(fileUpload());
 
 app.use('/auth', auth);
+app.use('/todo', todo);
 
 (async (): Promise<void> => {
     try {
