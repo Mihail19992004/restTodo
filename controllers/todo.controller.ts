@@ -56,8 +56,11 @@ class TodoController {
             const elements = await Todo.find({userId})
 
             response.status(200).json({message: 'success', elements})
+
         } catch (error) {
+
             response.status(500).json({message: "Server error. Try again later", error})
+
         }
     }
 
