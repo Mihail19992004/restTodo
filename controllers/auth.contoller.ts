@@ -3,6 +3,8 @@ import User from '../models/User.model'
 import {Request, Response} from 'express'
 import {hashSync, compareSync} from 'bcrypt'
 import {generateAccessToken} from "../middleware/jsonWebToken";
+import {RequestWithJWT} from "../types/middleware.types";
+import Todo from '../models/Todo.model'
 
 class userController {
 
@@ -47,11 +49,20 @@ class userController {
             return response.status(200)
                 .json({token, user})
         } catch (e) {
-            console.log(e)
             response.status(400).json({message: 'Server error. Please try again later', errors: e})
         }
     }
 
+    async remove (request: RequestWithJWT<null, {id: string}>, response: Response) {
+        try {
+            const { id } = request.params
+            await User.findOneAndDelete({ id })
+            await Todo.deleteMany({userId: id})
+            response.status(200).json({message: 'User success delete'})
+        } catch (error) {
+            response.status(400).json({message: 'Server error. Please try again later', error})
+        }
+    }
 
 }
 

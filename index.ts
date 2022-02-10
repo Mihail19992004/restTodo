@@ -4,6 +4,7 @@ import cors from 'cors'
 import fileUpload from 'express-fileupload'
 import auth from './routes/auth.router'
 import todo from './routes/todo.router'
+import social from './routes/social.router'
 
 const PORT = process.env.PORT || 5000
 const app: Express = express()
@@ -14,6 +15,7 @@ app.use(fileUpload());
 
 app.use('/auth', auth);
 app.use('/todo', todo);
+app.use('/social', social);
 
 (async (): Promise<void> => {
     try {

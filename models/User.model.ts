@@ -9,7 +9,7 @@ const UserModel = new Schema({
     city: {type: String},
     password: {type: String, required: true},
     role: {type: String, required: true},
-
+    isPublic: {type: Boolean}
 })
 
 export = model('UserModel', UserModel)

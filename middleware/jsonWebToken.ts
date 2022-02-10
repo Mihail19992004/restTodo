@@ -1,7 +1,8 @@
 import {sign, verify} from 'jsonwebtoken'
 import {Request, Response, NextFunction} from 'express'
+import {RequestWithJWT} from "../types/middleware.types";
 
-export function authenticateToken(req: Request, res: Response, next: NextFunction) {
+export function authenticateToken(req: RequestWithJWT<null>, res: Response, next: NextFunction) {
     try {
         const authHeader = req.headers['authorization']
         const token = authHeader && authHeader.split(' ')[1]
@@ -10,7 +11,6 @@ export function authenticateToken(req: Request, res: Response, next: NextFunctio
 
         verify(token, 'secret', (err: any, user: any) => {
             if (err) return res.status(403).json({message: 'Authorized request'})
-            // @ts-ignore
             req.user = user.id
             next()
         })

@@ -5,11 +5,9 @@ class TodoController {
 
     async getTodo (request: Request, response: Response) {
         try {
-            console.log('test')
             // @ts-ignore
             const userId = request.user
             const elements = await Todo.find({userId})
-            console.log(elements)
             response.status(200).json({message: "success", elements})
         } catch (error) {
             response.status(500).json({message: "Server error. Try again later", error})
